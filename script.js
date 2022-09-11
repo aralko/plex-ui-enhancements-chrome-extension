@@ -1,12 +1,12 @@
-async function watchPage() {
-    new MutationObserver(async (mutations, observer) => {
-        mutations.forEach(async mut => {
+function watchPageMainScrollableContainerForRenders() {
+    new MutationObserver((mutations, observer) => {
+        mutations.forEach(mut => {
             if (mut.type === "childList" && mut.addedNodes.length) {
                 for (let node of mut.addedNodes) {
                     // we track only elements, skip other nodes (e.g. text nodes)
                     if (!(node instanceof HTMLElement)) continue;
 
-                    if (node.matches("[class*=DirectoryListPageContent-pageContentScroller]")) {
+                    if (node.matches("[class*=PageContent-pageContentScroller]") || node.matches("[class*=Page-pageScroller]")) {
                         waitForElm("a[aria-label]", true, node)
                             .then(addRatingBadgesToDOM)
                             .catch(e => { console.warn(e) })
@@ -15,6 +15,11 @@ async function watchPage() {
                             node.setAttribute('scroll-listener', '')
                             node.addEventListener('scroll', () => {
                                 waitForElm("a[aria-label]", true, node)
+                                    .then((title) => {
+                                        if (title[0].getAttribute('aria-label') === 'The Shawshank Redemption, 1994')
+                                            console.log(title)
+                                        return title;
+                                    })
                                     .then(addRatingBadgesToDOM)
                                     .catch(e => { console.warn(e) })
                             })
@@ -29,11 +34,9 @@ async function watchPage() {
 
     });
 }
-watchPageMainScrollableForReRender()
+watchPageMainScrollableContainerForRenders()
 
-
-
-async function waitForElm(selector, all, container = undefined, rejectTime = 10000) {
+function waitForElm(selector, all, container = undefined, rejectTime = 10000) {
     return new Promise((resolve, reject) => {
         let timeout;
         new MutationObserver((_m, observer) => {
@@ -72,7 +75,7 @@ const interceptPlexData = () => {
     let oldXHROpen = window.XMLHttpRequest.prototype.open;
     window.XMLHttpRequest.prototype.open = function () {
         this.addEventListener("load", async function () {
-            const regex = /library\/sections\/.*\/all/
+            const regex = /library\/(sections|collections)\/.*\/(all|children)/
             const searchAndRecentlyAddedRegex = /hubs\/(sections|search|home\/recentlyAdded)\.*/
             const seasonEpisodesRegex = /library\/metadata\/.*\/children/
             const similarRegex = /library\/metadata\/.*\/similar/
