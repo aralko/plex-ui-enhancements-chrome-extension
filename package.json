@@ -1,0 +1,7 @@
+{
+  "name": "plex-ui-enhancements-chrome-extension",
+  "description": "Show Rotten Tomatoes ratings on library items while browsing the Plex client web UI.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Adam Ralko"
+}

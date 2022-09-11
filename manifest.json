@@ -1,0 +1,22 @@
+{
+  "content_scripts": [
+    {
+      "matches": ["https://app.plex.tv/*"],
+      "js": ["index.js"],
+      "css": ["styles.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["script.js", "styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "name": "Plex Web UI Enhancements",
+  "description": "Show Rotten Tomatoes ratings on library items while browsing Plex.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "author": "Adama Ralko",
+  "permissions": ["activeTab", "declarativeContent", "storage"]
+}
