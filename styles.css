@@ -1,3 +1,29 @@
+[class*="MetadataDetailsRow-titleContainer"] {
+  width: auto !important;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--size-xs) !important;
+}
+[class*="MetadataDetailsRow-titleContainer"] div[class*="_rating"] {
+  position: relative;
+  min-width: auto;
+  margin-right: 0.25em;
+}
+
+[class*="MetadataDetailsRow-titleContainer"] div[class*="_audienceRating"] {
+  position: relative;
+  min-width: auto;
+  top: 0 !important;
+  margin-right: 0.25em;
+}
+
+[class*="MetadataDetailsRow-titleContainer"] span {
+  width: auto !important;
+  margin-right: 0.5em;
+}
+
 .rating-icon {
   width: 18px;
   height: 16px;
@@ -31,7 +57,7 @@
   font-size: 1em;
   white-space: nowrap;
   box-sizing: border-box;
-  min-width: 0;
+  min-width: auto;
   flex-direction: row;
   display: flex;
   position: fixed;
@@ -52,7 +78,7 @@
   font-size: 1em;
   white-space: nowrap;
   box-sizing: border-box;
-  min-width: 0;
+  min-width: auto;
   flex-direction: row;
   display: flex;
   position: fixed;

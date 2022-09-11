@@ -247,8 +247,12 @@ function addRatingBadgesToDOM(items) {
                 icon.innerHTML = meta[title].rating < 6 ? ratingPoor : ratingGood;
                 rating.prepend(ratingText)
                 rating.prepend(icon)
+                if (item.nextSibling?.className.includes('MetadataDetailsRow-overlay'))
+                    item.nextSibling.firstChild.firstChild.nextSibling.firstChild.appendChild(rating)
+                else {
+                    item.parentNode.insertBefore(rating, item.parentNode.lastChild);
 
-                item.parentNode.insertBefore(rating, item);
+                }
             }
 
             if (item.parentNode.getElementsByClassName(title + '_audienceRating').length < 1 && meta[title]?.audienceRating) {
@@ -265,8 +269,10 @@ function addRatingBadgesToDOM(items) {
                 icon.innerHTML = meta[title].audienceRating < 6 ? audienceRatingPoor : audienceRatingGood;
                 audienceRating.prepend(audienceRatingText)
                 audienceRating.prepend(icon)
-
-                item.parentNode.insertBefore(audienceRating, item);
+                if (item.nextSibling?.className.includes('MetadataDetailsRow-overlay'))
+                    item.nextSibling.firstChild.firstChild.nextSibling.firstChild.appendChild(audienceRating)
+                else
+                    item.parentNode.insertBefore(audienceRating, item);
             }
         }
     })
