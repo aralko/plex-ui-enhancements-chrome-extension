@@ -2,7 +2,7 @@
 
 Show Rotten Tomatoes ratings on library items while browsing the Plex client web UI.
 
-![alt text](screenshots/movies-grid-ratings.jpg "Movies grid view with Rotten Tomatoes audience and critic ratings overlaid.")
+![alt text](screenshots/movies-list-ratings.jpg "Movies detail view with Rotten Tomatoes audience and critic ratings overlaid.")
 
 #### Installation
 
